@@ -1,0 +1,31 @@
+{% extends "./baseMantenedor.html"%}
+
+{% block body %}
+
+  
+  <!--formulario-->
+  <form  name="formulario" onSubmit="return Validar('email','pwd')">
+    <h1 class="h3 mb-3 fw-normal mt-5"><br><br><br>Ingrese a su cuenta</h1>
+
+    <div class="form-floating">
+      <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Correo</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" name="pwd" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Recordarme
+      </label>
+    </div>
+    <!--boton-->
+    <button type="button" class="w-100 btn btn-lg btn-primary" onclick="Validar()">Entrar</button>
+    <p class="mt-5 mb-3 text-muted">&copy; IMMOBILIS 2022<br><br></p>
+  </form>
+</main>
+
+
+{% endblock %}

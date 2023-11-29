@@ -1,0 +1,91 @@
+{% extends "./baseMantenedor.html"%}
+
+{% block body %}
+{% load static %}   
+
+
+<section class="intro-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">Panel de Admin</h1>
+          <span class="">Hola {{request.user.first_name}}! </span>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-4">
+        <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="../panel_admin/inicio">Panel Admin</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+            Propiedades
+           
+            </li>
+          </ol>
+          
+          
+        </nav>
+        
+      </div>
+    </div>
+  </div>
+</section><!-- End Intro Single-->
+    <div class="container-fluid py-4">
+        <div class="row">       
+            <div class="col-sm-12 ">
+                <div class="table-responsive py-2">
+                    <div class="row">
+                        <div class="col-sm-10"><h1>Listado Propiedades</h1></div>
+
+                        <div><a href="crearP" class="btn btn-primary">Crear</a></div>
+                    </div>
+                    
+                    
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Comuna</th>
+                                <th>Contrato</th>
+                                <th>Tipo</th>
+                                <th>Direccion</th>
+                                <th>Nº Dorm</th>
+                                <th>Nº Baños</th>
+                                <th>Nº Est</th>
+                                <th>Precio</th>
+                                <th>Disp</th>
+                                <th colspan="2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in datos.listar_p %}
+                                <tr>
+                                    <td>{{p.propiedad_id}}</td>
+                                    <td>{{p.comuna.nombreComuna}}</td>
+                                    <td>{{p.tipoContrato.nombreContrato}}</td>
+                                    <td>{{p.tipo_negocio.nombreTipo}}</td>
+                                    <td>{{p.direccion}}</td>
+                                    <td>{{p.num_dor}}</td>
+                                    <td>{{p.num_banios}}</td>
+                                    <td>{{p.num_estac}}</td>
+                                    <td>${{p.precio}}</td>
+                                    <td>{% if p.disponible %}<img src="{% static 'admin/img/icon-yes.svg' %}" alt="SI" width="20" height="20">{% else %}<img src="{% static 'admin/img/icon-no.svg' %}" alt="NO" width="20" height="20" >{% endif %}</td>
+                                    <td><a href="edicionPropiedad/{{p.propiedad_id}}" class="btn btn-info"><img src="{% static 'admin/img/icon-changelink.svg' %}" alt="Editar" width="20" height="20" ></a></td>
+                                    <td><a href="eliminarPropiedad/{{p.propiedad_id}}" class="btn btn-danger">X</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "./baseMantenedor.html"%}
+
+{% block body %}
+{% load static %}   
+
+<body>
+<!-- ======= Intro Single ======= -->
+<section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Mi Cuenta</h1>
+            <span class="color-text-a">Informacion</span>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="#">Mi Cuenta</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Inicio
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Intro Single-->
+  <div class="container">
+    <div class="row">
+    
+      <div class="col-md-3 col-lg-3">
+
+        <div class="post-content color-text-a bg-success">
+          <blockquote class="blockquote">
+            <p class="mb-4 ">{{datos.propiedad}}</p>
+              <strong>s</strong>
+              <cite title="Source Title">Author</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  </div>
+{% endblock %}

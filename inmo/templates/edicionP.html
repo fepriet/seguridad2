@@ -1,0 +1,150 @@
+{% extends "./baseMantenedor.html"%}
+
+{% block body %}
+{% load static %}   
+<section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Panel de Admin</h1>
+            <span class="">Edita una propiedad </span>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="../panel_admin/inicio">Panel Admin</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="../panel_admin/propiedades">Propiedades</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+              Editar
+             
+              </li>
+            </ol>
+            
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+  </section><!-- End Intro Single-->
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class=" col-md-8 ">
+            <div class="card" >
+                <div class="card-body">
+                    <form action="../editarPropiedad/" method="post">{% csrf_token %}
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select class="custom-select form-control" aria-label="Default select example" name="idComuna">
+                                        <option selected>Seleccione Comuna</option>
+                                        {% for c in datos.listar_c %}
+                                            <option value={{c.idComuna}} {% if c.idComuna is propiedad.comuna.idComuna %} selected {% endif %}>{{c.nombreComuna}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>   
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select class="custom-select form-control" aria-label="Default select example" name="idContrato">
+                                        <option selected>Seleccione Tipo Contrato</option>
+                                        {% for c in datos.listar_ct %}
+                                            <option value={{c.idContrato}} {% if c.idContrato is propiedad.tipoContrato.idContrato %} selected {% endif %}>{{c.nombreContrato}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <select class="custom-select form-control" aria-label="Default select example" name="idTipo">
+                                        <option selected>Seleccione Tipo Propiedad</option>
+                                        {% for c in datos.listar_tp %}
+                                            <option value={{c.idTipo}} {% if c.idTipo is propiedad.tipo_negocio.idTipo %} selected {% endif %}>{{c.nombreTipo}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" id="txt_direccion" name="txt_direccion" class="form-control" value="{{propiedad.direccion}}" placeholder="Direccion" maxlength="500" required>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="number" id="num_banos" name="num_banos" class="form-control" value="{{propiedad.num_banios}}" placeholder="Nro. Baños" maxlength="100" required>
+                                    <input hidden type="text" id="propiedad_id" name="propiedad_id" value="{{propiedad.propiedad_id}}" class="form-control" placeholder="Nro. Baños" maxlength="100" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="number" id="num_dor" name="num_dor" class="form-control" value="{{propiedad.num_dor}}" placeholder="Nro. Dormitorios" maxlength="100" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="number" id="num_estac" name="num_estac" class="form-control" value="{{propiedad.num_dor}}" placeholder="Nro. Estacionamientos" maxlength="100" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+    
+                                    <input type="number" id="precio" name="precio" class="form-control" value="{{propiedad.precio}}" placeholder="Precio" maxlength="100" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" id="url_img1" name="url_img1" class="form-control" value="{{propiedad.imagen}}" placeholder="Url Imagen 1" maxlength="100" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" id="url_img2" name="url_img2" class="form-control" value="{{propiedad.imagen2}}" placeholder="Url Imagen 2" maxlength="100" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descripcion" value="{{propiedad.descripcion}}" placeholder="Descripcion"></textarea>                          
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <select class="custom-select form-control" aria-label="Default select example" name="disponible">
+                                    <option disabled>Seleccione Disponibiolidad</option>
+                                        <option value=1 {% if propiedad.disponible %} selected {% endif %}>Disponible</option>
+                                        <option value=2 {% if propiedad.disponible %} {% else %} selected {% endif %}>No Disponible</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" style="padding-top: 2%;">
+                            <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+         </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</body>
+
+
+{% endblock %}

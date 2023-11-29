@@ -1,0 +1,40 @@
+{% extends "./baseMantenedor.html"%}
+{% load static %}   
+
+
+
+{% block body %}
+<link href="{% static 'core/css/sing-up.css' %}" rel="stylesheet">
+<div class="container-fluid">
+    <div class="row no-gutter">
+       <div class="col-md-6 d-none d-md-flex bg-image"></div>
+       <div class="col-md-6 bg-light">
+          <div class="login d-flex align-items-center py-5">
+             <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-xl-6 mx-auto">
+                        <div class="col-md-12 bg-light py-5"></div>
+                        <h5 class="display-4 text-brand">La propiedad de tus sueños a <span class="color-b">solo unos clicks</span></h3>
+                        <br> 
+
+                        <form method="post">
+                        {% csrf_token %}
+
+                        {{ form.as_p }}
+                        <button type="submit" id="submit">Ingresar</button>
+                         <div class="text-center d-flex justify-content-between mt-4">
+                            <p> ¿No tienes cuenta?<a href="../registro" class="color-b"> <u>Registrarme</u></a></p>
+                         </div>
+                        </form>
+
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+
+{% endblock %}

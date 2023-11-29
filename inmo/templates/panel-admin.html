@@ -1,0 +1,106 @@
+{% extends "./baseMantenedor.html"%}
+
+{% block body %}
+{% load static %}   
+
+<body>
+<!-- ======= Intro Single ======= -->
+<section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Panel de Admin</h1>
+            <span class="color-text-a">Resumen portal web</span><br>
+            <span class="">Hola {{request.user.first_name}}! </span>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="#">Panel Admin</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+              Inicio
+              <br><span class="color-text-a"> {{datos.hora}} <i class="bi bi-house"> </i></span>
+              </li>
+            </ol>
+            
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+  </section><!-- End Intro Single-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-lg-3">
+        <div class="post-content color-text-a bg-primary">
+          <blockquote class="blockquote">
+            <p class="mb-4"><strong><h3>Propiedades</h3></strong></p>
+            <h5>Existen {{datos.listar_p.count}} propiedades en el sistema</h5>
+            <h6><a href="../panel_admin/propiedades">·Administrar propiedades</a></h6>
+          </blockquote>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3">
+      <div class="post-content color-text-a bg-primary">
+        <blockquote class="blockquote">
+          <p class="mb-4"><strong><h3>Usuarios</h3></strong></p>
+          <h5>Existen {{datos.listar_usr.count}} usuarios en el sistema</h5>
+          <h6><a href="../panel_admin/usuarios">·Ver usuarios</a></h6>
+        </blockquote>
+      </div></div>
+      <div class="col-md-3 col-lg-3">
+        <div class="post-content color-text-a bg-success">
+          <blockquote class="blockquote">
+            <p class="mb-4"><strong><h3>Comunas</h3></strong></p>
+            <h5>Existen {{datos.listar_c.count}} comunas en el sistema</h5>
+            <h6><a href="../panel_admin/comunas">·Administrar comunas</a></h6>
+          </blockquote>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3">
+        <div class="post-content color-text-a bg-success">
+          <blockquote class="blockquote">
+            <p class="mb-4"><strong><h3>Contacto</h3></strong></p>
+          <h5>Existen {{datos.listar_con.count}} formularios de contacto en el sistema</h5>
+        </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nº</th>
+            <th>ID P.</th>
+            <th>Cliente</th>
+            <th>Numero</th>
+            <th>Fecha</th>
+            <th>Tipo Pago</th>
+            <th>Comentario</th>
+            <th>Contactado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in datos.listar_con %}
+            <tr>
+                <td>{{p.compra_id}}</td>
+                <td><a href="../propiedad/{{p.propiedad_id}}">{{p.propiedad_id}}</a></td>
+                <td>{{p.cliente}}</td>
+                <td>{{p.numero}}</td>
+                <td>{{p.fecha}}</td>
+                <td>{{p.tipo_pago}}</td>
+                <td>{{p.comentario}}</td>
+                <td>{% if p.contactado %}<img src="{% static 'admin/img/icon-yes.svg' %}" alt="Editar" width="30" height="30" >{% else %}<a href="../panel_admin/contactado/{{p.compra_id}}" class="btn btn-info"><img src="{% static 'admin/img/icon-yes.svg' %}" alt="Editar" width="20" height="20" ></a>{% endif %}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+  </div>
+{% endblock %}

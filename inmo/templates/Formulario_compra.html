@@ -1,0 +1,112 @@
+{% extends "./baseMantenedor.html"%}
+
+{% block body %}
+
+<!-- ======= Intro Single ======= -->
+<section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Formulario de contacto</h1>
+            <span class="color-text-a">Dejanos tu información y te contactaremos a la brevedad</span>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="#">Formulario</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Compra-Arriendo
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Intro Single-->
+
+  
+
+  <div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="row section-t3">
+              <div class="col-sm-12">
+                <div class="title-box-d">
+                  <h3 class="title-d">{{datos.propiedad.direccion}}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-lg-4">
+                <img src="{{datos.propiedad.imagen}}" alt="" class="img-fluid">
+              </div>
+              <div class="col-md-6 col-lg-4">
+                <div class="property-agent">
+                  <h4 class="title-agent">{{datos.propiedad.tipoContrato}}</h4>
+                  <p class="color-text-a">
+                    Nuestros agentes estan atentos a tus necesidades, rellena el formulario y serás contactado.
+                  </p>
+                  <ul class="list-unstyled">
+                    <li class="d-flex justify-content-between">
+                      <strong>Comuna:</strong>
+                      <span class="color-text-a">{{datos.propiedad.comuna}}</span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>Tipo:</strong>
+                      <span class="color-text-a">{{datos.propiedad.tipo_negocio}}</span>
+                    </li>
+                  </ul>
+                
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-4">
+                <div class="property-contact">
+                  <form class="form-a" action="/compra/" method="POST">{% csrf_token %}
+                    <div class="row">
+
+                      <div class="col-md-12 mb-1">
+                        <div class="form-group">
+                            <input type="text" id="propiedad_id" name="propiedad_id" value="{{datos.propiedad.propiedad_id}}" class="form-control"  maxlength="20" readonly>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-1">
+                        <div class="form-group">
+                          <textarea id="textNumero" class="form-control" placeholder="Numero Telefonico *" name="numero" required></textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-1">
+                        <div class="form-group">
+                            <select class="form-control" name="tipo_pago" id="tipo_pago">
+                                <option disabled>Seleccione tipo de pago</option>
+                                <option>Efectivo</option>
+                                <option>Credito Hipotecario</option>
+                                <option>Credito Interno</option>
+                              </select>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-1">
+                        <div class="form-group">
+                          <textarea id="textMessage" class="form-control" placeholder="Mensaje *" name="message" cols="45" rows="8" required></textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mt-3">
+                        <button type="submit" class="btn btn-a">Solicitar Atención</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+            
+        </div>
+    </div>
+
+{% endblock %}

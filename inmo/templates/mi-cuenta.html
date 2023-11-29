@@ -1,0 +1,92 @@
+{% extends "./baseMantenedor.html"%}
+
+{% block body %}
+{% load static %}   
+
+<body>
+<!-- ======= Intro Single ======= -->
+<section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Mi Cuenta</h1>
+            <span class="color-text-a">Informacion</span><br>
+            <span class="">Hola {{request.user.first_name}}! </span>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="#">Mi Cuenta</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+              Inicio
+              <br><span class="color-text-a"> {{datos.hora}} <i class="bi bi-house"> </i></span>
+              </li>
+            </ol>
+            
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+  </section><!-- End Intro Single-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-lg-3">
+        <div class="post-content color-text-a bg-primary">
+          <blockquote class="blockquote">
+            <p class="mb-4"><strong><h3>Propiedades</h3></strong></p>
+            {% if datos.countpropiedades is 0 %}
+            <h5>No posee propiedades</h5>
+            {% elif datos.countpropiedades is 1 %}
+            <h5>Tiene {{datos.countpropiedades}} Propiedad</h5>
+            {% for p in datos.propiedad %}
+            <h6><a href="../propiedad/{{p.propiedad_id}}">{{p.direccion}}</a></h6>
+            {% endfor %}
+            <h6><a href="../mi_cuenta/propiedades">Mis Propiedades</a></h6>
+            {% else %}
+            <h5>Tiene {{datos.countpropiedades}} Propiedades</h5>
+            {% for p in datos.propiedad %}
+            <h6><a href="../propiedad/{{p.propiedad_id}}">{{p.direccion}}</a></h6>
+            {% endfor %}
+            {% endif %}
+          </blockquote>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3">
+      <div class="post-content color-text-a bg-primary">
+        <blockquote class="blockquote">
+          <p class="mb-4"><strong><h3>Compra una propiedad</h3></strong></p>
+          <h5><a href="../propiedades">·Busca y encuentra tu nuevo hogar</a></h5>
+        </blockquote>
+      </div></div>
+      <div class="col-md-3 col-lg-3">
+        <div class="post-content color-text-a bg-success">
+          <blockquote class="blockquote">
+            <p class="mb-4"><strong><h3>No perdamos contacto!</h3></strong></p>
+            <h5><a href="../mi_cuenta/configurar">·Actualiza tu informacion de contacto en configuraciones</a></h5>
+          </blockquote>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3">
+        <div class="post-content color-text-a bg-success">
+          <blockquote class="blockquote">
+            <p class="mb-4"><strong><h3>Sobre Mi</h3></strong></p>
+            <h5>{{datos.user.first_name}} {{datos.user.last_name}}</h5>
+            <h6>@{{datos.user.username}}</h6>
+            <h6>{{datos.user.email}}</h6>
+            <h6>Ultimo Inicio:
+            {{datos.user.last_login|date:"d/m/Y h:m:s"}}</h6>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  </div>
+{% endblock %}

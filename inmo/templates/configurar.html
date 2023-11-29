@@ -1,0 +1,62 @@
+{% extends "./baseMantenedor.html"%}
+
+{% block body %}
+{% load static %}   
+
+<body>
+<!-- ======= Intro Single ======= -->
+<section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Mi Cuenta</h1>
+            <span class="color-text-a">Informacion</span>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="../mi_cuenta/inicio">Mi Cuenta</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Configurar
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Intro Single-->
+  <link href="{% static 'core/css/sing-up.css' %}" rel="stylesheet">
+  <div class="container-fluid">
+      <div class="row no-gutter">
+         <div class="col-md-12 bg-light">
+            <div class="login d-flex align-items-center py-5">
+               <div class="container">
+                  <div class="row">
+                      <div class="col-lg-7 col-xl-6 mx-auto">
+                          <h5 class="display-4 text-brand">Modifica tu informacion y <span class="color-b">mantengamos el contacto</span></h3>
+                          <br> 
+  
+                          <form method="post">
+                          {% csrf_token %}
+  
+                          {{ form.as_p }}
+                          <button type="submit" id="submit">Modificar</button>
+                          
+                          <!-- <div class="text-center d-flex justify-content-between mt-4">
+                              <p> ¿No tienes cuenta?<a href="../registro" class="color-b"> <u>Registrarme</u></a></p>
+                           </div>-->
+                          </form>
+  
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+  
+{% endblock %}

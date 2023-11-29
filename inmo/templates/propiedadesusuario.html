@@ -1,0 +1,212 @@
+{% extends "./baseMantenedor.html"%}
+
+{% block body %}
+{% load static %}   
+
+<body>
+<!-- ======= Intro Single ======= -->
+<section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Mis Propiedades</h1>
+            <span class="color-text-a">Mira tus propiedades</span>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="../mi_cuenta/inicio">Mi Cuenta</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Propiedades
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Intro Single-->
+{% if datos.countpropiedades is 0 %}
+<section>
+<div class="container">
+<div class="row">
+<div class="col-md-3 col-lg-3"></div>
+<div class="col-md-6 col-lg-6">
+<div class="post-content color-text-a bg-warning">
+  <blockquote class="blockquote">
+    <p class="mb-4"><strong><h3>No Posee Propiedades</h3></strong></p>
+    <h5><a href="../propiedades">Que esperas, busca tu nueva propiedad!</a></h5>
+  </blockquote>
+</div>
+</div>
+<div class="col-md-3 col-lg-3"></div>
+</div>
+</div>
+</section>
+{% else %}
+<!-- ======= Property Grid ======= -->
+<section class="property-grid grid">
+    <div class="container">
+      <div class="row">
+        {% for p in datos.propiedad %}
+        <div class="col-md-4">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="{{p.imagen}}" alt="" class="img-a img-fluid">
+            </div>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="../propiedad/{{p.propiedad_id}}">{{p.direccion}}<br>
+                        <br><span class="color-b">{{p.tipo_negocio}}<br></span></a><br>
+                  </h2>
+                </div>
+
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    {% if p.tipoContrato.nombreContrato == 'Arriendo' %}
+                    <span class="price-a">Arrendando</span>
+                    {% endif %}
+                    {% if p.tipoContrato.nombreContrato == 'Compra' %}
+                    <span class="price-a">Comprada</span>
+                    {% endif %}
+
+                  </div>
+                  <a href="propiedad/{{p.propiedad_id}}" class="link-a">Click para ver
+                    <span class="bi bi-chevron-right"></span>
+                  </a>
+                </div>
+
+                {% if p.tipo_negocio.nombreTipo == 'Oficina' %}
+                <div class="card-footer-a" >
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Comuna</h4>
+                      <span>{{p.comuna}}
+                      </span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Oficinas</h4>
+                      <span>4</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Baños</h4>
+                      <span>2</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Estac.</h4>
+                      {% if p.num_estac >= 1 %}
+                      <span>Si ({{p.num_estac}})</span>
+                      {% else %}
+                      <span class="color-r">No</span>
+                      {% endif %}
+                    </li>
+                  </ul>
+                  <br>
+                </div>
+                {% endif %}
+
+                {% if p.tipo_negocio.nombreTipo == 'Casa' %}
+                <div class="card-footer-a" >
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Comuna</h4>
+                      <span>{{p.comuna}}
+                      </span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Dormitorios</h4>
+                      <span>4</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Baños</h4>
+                      <span>2</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Estac.</h4>
+                      {% if p.num_estac >= 1 %}
+                      <span>Si ({{p.num_estac}})</span>
+                      {% else %}
+                      <span class="color-r">No</span>
+                      {% endif %}
+                    </li>
+                  </ul>
+                  <br>
+                </div>
+                {% endif %}
+
+                {% if p.tipo_negocio.nombreTipo == 'Departamento' %}
+                <div class="card-footer-a" >
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Comuna</h4>
+                      <span>{{p.comuna}}
+                      </span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Dormitorios</h4>
+                      <span>4</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Baños</h4>
+                      <span>2</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Estac.</h4>
+                      {% if p.num_estac >= 1 %}
+                      <span>Si ({{p.num_estac}})</span>
+                      {% else %}
+                      <span class="color-r">No</span>
+                      {% endif %}
+                    </li>
+                  </ul>
+                  <br>
+                </div>
+                {% endif %}
+
+                {% if p.tipo_negocio.nombreTipo == 'Estacionamiento' %}
+
+                <div class="card-footer-a" >
+                    <ul class="card-info d-flex justify-content-around">
+                      <li>
+                        <h4 class="card-info-title">Comuna</h4>
+                        <span>{{p.comuna}}
+                        </span>
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Estac.</h4>
+                        {% if p.num_estac >= 1 %}
+                        <span>Si ({{p.num_estac}})</span>
+                        {% else %}
+                        <span class="color-r">No</span>
+                        {% endif %}
+                      </li>
+                    </ul>
+                    <br>
+                  </div>
+                  {% endif %}
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor%}
+        {% endif %}
+        </div>
+      </div>
+
+     
+        </div>
+      </div>
+    </div>
+  </section><!-- End Property Grid Single-->
+
+
+
+{% endblock %}
